@@ -2,7 +2,18 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    extend: {}
+    extend: {
+      screens: {
+        xl: '1440px'
+      },
+      colors: {
+        violet: '#6348FE',
+        'deep-violet': '#21092F',
+        'purplish-gray': '#8F8694',
+        'light-gray': '#DFDEE0',
+        red: '#FF5050'
+      }
+    }
   },
   plugins: []
 };
