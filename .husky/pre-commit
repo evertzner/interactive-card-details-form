@@ -27,4 +27,4 @@ fi
 printf "${GREEN}✅ 'npm lint' completed successfully!${RESET}\n"
 
 # Custom message after the process finishes
-printf "${CYAN}🎉 All checks passed! Ready to commit! 🚀\n "
+printf "${CYAN}🎉 All checks passed! Ready to commit! 🚀\n"
