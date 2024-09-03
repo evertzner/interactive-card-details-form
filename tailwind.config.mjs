@@ -7,11 +7,11 @@ export default {
         xl: '1440px'
       },
       colors: {
-        violet: '#6348FE',
+        violet: { DEFAULT: '#6348FE' },
         'deep-violet': '#21092F',
         'purplish-gray': '#8F8694',
         'light-gray': '#DFDEE0',
-        red: '#FF5050'
+        red: { DEFAULT: '#FF5050' }
       }
     }
   },
