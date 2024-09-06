@@ -3,6 +3,25 @@ import CardLogoDesktop from '../icons/CardLogoDesktop.astro';
 import CardLogoMobile from '../icons/CardLogoMobile.astro';
 ---
 
+<script>
+  const cardName = document.querySelector('#cardName');
+  const cardNumber = document.querySelector('#cardNumber') as HTMLInputElement;
+  const expirationMonth = document.querySelector('#expirationMonth');
+  const expirationYear = document.querySelector('#expirationYear');
+  const cvc = document.querySelector('#cvc');
+  const printedNumber = document.querySelector('#printedNumber') as HTMLSpanElement;
+  const printedName = document.querySelector('#printedName');
+  const printedExpirationDate = document.querySelector('#printedExpirationDate');
+  const printedCvc = document.querySelector('#printedCvc');
+
+  document.querySelector('form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(cardNumber);
+    console.log(printedNumber);
+    printedNumber.innerText = cardNumber.value;
+  });
+</script>
+
 <main
   class='relative w-[375px] xl:w-[1440px] h-auto xl:h-[900px] shadow-2xl rounded-md overflow-hidden flex flex-col'
 >
@@ -15,8 +34,9 @@ import CardLogoMobile from '../icons/CardLogoMobile.astro';
     class='absolute w-[286px] xl:w-[447px] h-[157px] xl:h-[245px] top-8 left-[72px] xl:left-[258px] xl:top-[469px] xl:shadow-2xl xl:shadow-gray-800 rounded-md xl:rounded-xl'
   >
     <img src='/bg-card-back.png' alt='Card Back' class='absolute' />
-    <span class='absolute text-body-l text-white right-9 xl:right-14 top-[72px] xl:top-[111px]'
-      >000</span
+    <span
+      class='absolute text-body-l text-white right-9 xl:right-14 top-[72px] xl:top-[111px]'
+      id='printedCvc'>000</span
     >
   </div>
   <div
@@ -27,63 +47,106 @@ import CardLogoMobile from '../icons/CardLogoMobile.astro';
     <CardLogoMobile />
     <span
       class='text-white tracking-[2.2px] xl:tracking-[3.422px] font-medium text-[18px] xl:text-[28px] absolute left-5 xl:left-8 bottom-12 xl:bottom-[70px]'
-      >0000 0000 0000 0000</span
+      id='printedNumber'>0000 0000 0000 0000</span
     >
-    <span class='text-body-l absolute bottom-5 xl:bottom-6 left-5 xl:left-8 text-white'
-      >Jane Appleseed</span
+    <span
+      class='text-body-l absolute bottom-5 xl:bottom-6 left-5 xl:left-8 text-white'
+      id='printedName'>JANE APPLESEED</span
     >
-    <span class='text-body-l absolute bottom-5 xl:bottom-6 right-5 xl:right-8 text-white'
-      >00/00</span
+    <span
+      class='text-body-l absolute bottom-5 xl:bottom-6 right-5 xl:right-8 text-white'
+      id='printedExpirationDate'>00/00</span
     >
   </div>
-  <div
-    class='w-[327px] xl:w-[381px] mt-24 xl:mt-0 mx-auto xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:right-0 xl:-translate-x-1/2'
-  >
-    <label class='text-body-m text-deep-violet' for='name'>Cardholder name</label>
-    <input
-      class='mt-2.5 mb-5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet'
-      type='text'
-      placeholder='e.g. Jane Appleseed'
-      id='name'
-    />
-    <label class='text-body-m text-deep-violet' for='number'>Card number</label>
-    <input
-      class='mt-2.5 mb-5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet'
-      type='text'
-      placeholder='e.g. 1234 5678 9123 0000'
-      id='number'
-    />
-    <div class='mb-5 grid gap-2.5 grid-cols-2'>
-      <div class='flex flex-col'>
-        <label class='text-body-m text-deep-violet' for='month'>Exp. date (mm/yy)</label>
-        <div class='mt-2.5 flex gap-2'>
+  <form method='POST'>
+    <div
+      class='w-[327px] xl:w-[381px] mt-24 xl:mt-0 mx-auto xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:right-0 xl:-translate-x-1/2'
+    >
+      <div>
+        <label class='text-body-m text-deep-violet' for='name'>Cardholder name</label>
+        <input
+          class='mt-2.5 mb-5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet hover:border hover:border-violet peer'
+          type='text'
+          placeholder='e.g. Jane Appleseed'
+          id='cardName'
+          maxlength='25'
+          required
+          pattern='[A-Z a-z]{5,25}'
+        />
+        <p
+          class='hidden peer-[&:not(:placeholder-shown):not(:focus):invalid]:block -mt-4 text-red text-body-s'
+        >
+          Invalid value
+        </p>
+      </div>
+      <div>
+        <label class='text-body-m text-deep-violet' for='number'>Card number</label>
+        <input
+          class='mt-2.5 mb-5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet hover:border hover:border-violet peer'
+          type='text'
+          placeholder='e.g. 1234 5678 9123 0000'
+          id='cardNumber'
+          maxlength='20'
+          required
+          pattern='[0-9]{20}'
+        />
+        <p
+          class='hidden peer-[&:not(:placeholder-shown):not(:focus):invalid]:block -mt-4 text-red text-body-s'
+        >
+          Invalid value
+        </p>
+      </div>
+      <div class='mb-6 grid gap-2.5 grid-cols-2'>
+        <div class='flex flex-col'>
+          <label class='text-body-m text-deep-violet' for='month'>Exp. date (mm/yy)</label>
+          <div class='mt-2.5 flex gap-2 relative'>
+            <input
+              class='rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet hover:border hover:border-violet peer'
+              type='text'
+              placeholder='MM'
+              id='expirationMonth'
+              required
+              maxlength='2'
+              pattern='[0-9]{2}'
+            />
+            <input
+              class='rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet hover:border hover:border-violet peer'
+              type='text'
+              placeholder='YY'
+              id='expirationYear'
+              required
+              maxlength='2'
+              pattern='[0-9]{2}'
+            />
+            <p
+              class='absolute -bottom-4 hidden peer-[&:not(:placeholder-shown):not(:focus):invalid]:block -mt-4 text-red text-body-s'
+            >
+              Invalid value
+            </p>
+          </div>
+        </div>
+        <div class='flex flex-col'>
+          <label class='text-body-m text-deep-violet' for='cvc'>CVC</label>
           <input
-            class='rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet'
+            class='mt-2.5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet hover:border hover:border-violet peer'
             type='text'
-            placeholder='MM'
-            id='month'
+            placeholder='e.g. 123'
+            id='cvc'
+            required
+            maxlength='3'
+            pattern='[0-9]{3}'
           />
-          <input
-            class='rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet'
-            type='text'
-            placeholder='YY'
-            id='year'
-          />
+          <p
+            class='hidden peer-[&:not(:placeholder-shown):not(:focus):invalid]:block -mb-5 text-red text-body-s'
+          >
+            Invalid value
+          </p>
         </div>
       </div>
-      <div class='flex flex-col'>
-        <label class='text-body-m text-deep-violet' for='cvc'>CVC</label>
-        <input
-          class='mt-2.5 rounded-lg heading-l py-2.5 px-4 w-full border border-light-gray outline-violet'
-          type='text'
-          placeholder='e.g. 123'
-          id='cvc'
-        />
-      </div>
+      <button
+        class='heading-l mb-10 mt-4 text-white bg-deep-violet w-full py-4 text-center rounded-lg'
+        type='submit'>Confirm</button
+      >
     </div>
-    <button
-      class='heading-l mb-10 mt-4 text-white bg-deep-violet w-full py-4 text-center rounded-lg'
-      >Confirm</button
-    >
-  </div>
+  </form>
 </main>
