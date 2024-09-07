@@ -1,58 +1,55 @@
-# Astro + Tailwind
+# Frontend Mentor - Interactive card details form solution
 
-## 🔍 Overview
+This is a solution to the [Interactive card details form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-Here you will find a template to create an `Astro` project that uses `Tailwind`. Also it has `eslint` and `prettier` configured.
+## Table of contents
 
-Run the following command to create a project with the template:
+- [Frontend Mentor - Interactive card details form solution](#frontend-mentor---interactive-card-details-form-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+  - [Installation](#installation)
+    - [Install dependencies](#install-dependencies)
+    - [Run Application](#run-application)
 
-```sh
-npm create astro@latest <project-name> -- --template evertzner/astro-tailwind-template --yes
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- Fill in the form and see the card details update in real-time
+- Receive error messages when the form is submitted if:
+  - Any input field is empty
+  - The card number, expiry date, or CVC fields are in the wrong format
+- View the optimal layout depending on their device's screen size
+- See hover, active, and focus states for interactive elements on the page
+
+### Links
+
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- Astro
+- Tailwind
+
+## Installation
+
+### Install dependencies
+
+```bash
+npm install
 ```
 
-## 🚀 Project Structure
+### Run Application
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── .husky/
-│   └── _
-│   └── pre-commit
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Main.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│   │   └── index.astro
-│   └── styles.css
-└── .gitignore
-└── .prettierrc
-└── .prettierrc.mjs
-└── astro.config.mjs
-└── eslint.config.js
-└── package.json
-└── tailwind.config.mjs
-└── tsconfig.json
+```bash
+npm run dev
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:4321`  |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
-| `npm run format`  | Format the document using Prettier           |
-| `npm run check`   | Check types using `astro check`              |
-| `npm run lint`    | Check linting and format                     |
